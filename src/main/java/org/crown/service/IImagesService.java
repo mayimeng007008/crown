@@ -20,9 +20,15 @@
  */
 package org.crown.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.crown.framework.service.BaseService;
 import org.crown.model.dto.ActivityDetailDTO;
+import org.crown.model.dto.HeadImgDTO;
+import org.crown.model.dto.ImagesDTO;
 import org.crown.model.entity.Activity;
+import org.crown.model.entity.HeadImg;
 import org.crown.model.entity.Images;
 
 /**
@@ -40,6 +46,25 @@ public interface IImagesService extends BaseService<Images> {
 	Images findImageById(int id);
 
 	void addImageThumbsUpById(int id, int num);
+
+	List<Images> getThumbsUpRanking(String uuid);
+
+	List<Images> getVisitsRanking(String uuid);
+
+	HeadImg findHeadImgById(int id);
+
+	Images getImgsByHead(int id);
+
+	List<HashMap<String, Object>> getUUIDList();
+	List<Images> groupList(String galleryUuid);
+
+	List<Images> getImgs(String uuid);
+
+	void setCutHeadImg(Integer id);
+
+	List<Images> findAllImgsByUuid(String uuId);
+
+	void updateWaterMarkStatus(Integer id);
 
 	
 }

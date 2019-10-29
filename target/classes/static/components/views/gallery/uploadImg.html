@@ -11,7 +11,7 @@
     </div>
    
    <div class="layui-form-item" style="padding:10px;">
-        <div id="bannerImg1">
+        <div id="bannerImg1"  style=" overflow-y:auto; overflow-x:auto; width:102%; height:300px;">
         </div>
 
     </div>
@@ -44,7 +44,7 @@
             elem: '#uploadImg1' //绑定元素
             ,url: '/activity/upload' //上传接口
             ,headers: {Authorization: config.getToken()},
-            data: {"uuid": uuid},
+            data: {"uuid": uuid,"iswatermatk":0},
 	        accept: "images", //普通文件
 	        exts: 'jpg|png|jpeg|gif',//设置可上传文件
 	        multiple: true, //多文件上传
@@ -54,7 +54,7 @@
                   obj.preview(function(index, files, result) {
                       $('#bannerImg1').append('<img src="' + result 
                           + '" alt="' + files.name 
-                          +'"height="92px" width="92px" style="margin:5px;" class="layui-upload-img uploadImgPreView">');
+                          +'"height="91px" width="91px" style="margin:5px;" class="layui-upload-img uploadImgPreView">');
                   }); 
               }
             ,done: function(res, index, upload){
@@ -83,7 +83,7 @@
             		var imgId=imgIdArr[index];
             		//console.log(imgName);
             		//上传图片确定后回显
-
+					 
             		$("#flowContent").prepend('<li style="display: inline-block;"><a class="fancybox" href="./image/' + imgPath + '" data-fancybox-group="gallery"><img src="./image/' + scaleImgPath
                         + '" alt="' + imgName
                         +'"height="186px" width="186px" style="margin:5px;" class="layui-upload-img uploadImgPreView"></a><div class="bbb"><img data='+imgId+'  class="eee" src="./assets/images/unselected.png"></img></div></li>');
@@ -114,6 +114,7 @@
 	                 
 	               });
         })
+    
         
     });
 </script>

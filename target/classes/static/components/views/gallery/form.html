@@ -1,4 +1,10 @@
+<style>
+#span-theme{
 
+
+}
+
+</style>
 <form id="gallery" lay-filter="gallery" class="layui-form model-form">
     
     <div class="layui-form-item">
@@ -49,7 +55,7 @@
             	 
                  layer.closeAll('loading');
                  layer.msg('创建成功', {icon: 1});
-                 parent.$("#addCard").append("<li data = "+res.result.uuid+" class=\"edit-item\">\r\n" + 
+               $("#gallery").prepend("<li data = "+res.result.uuid+" class=\"edit-item\">\r\n" + 
                 	 		"					<div class=\"gallery-item\">\r\n" + 
                    	 		"						<div id=\"card-item\" class=\"card-item\">\r\n" + 
                    	 		"							<div class=\"item-status\" style=\"background: rgb(255, 33, 49);\">待拍摄</div>\r\n" + 
@@ -58,9 +64,9 @@
                    	 		"							</div>\r\n" + 
                    	 		"							<div class=\"info-wrap\">\r\n" + 
                    	 		"								<div class=\"theme\">\r\n" + 
-                   	 		"									<span>\r\n" + $("#theme").val() + 
-                   	 		"									</span>\r\n" + 
-                   	 		"								</div>\r\n" + 
+                   	 		'									<span class="span-theme">\r\n' + $("#theme").val() + 
+                   	 		'									</span>\r\n' + 
+                   	 		'								</div><div class="hideCheack layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em >可见</em><i></i></div>\r\n' + 
                    	 		"								\r\n" + 
                    	 		"								<div class=\"content-wrap\">\r\n" + 
                    	 		"									<div class=\"place-wrap\">\r\n" + 
@@ -85,6 +91,9 @@
                    	 		"					</div>\r\n" + 
                    	 		"				</li>");
              	
+               
+             var add=  $("#gallery").find("#addCard");
+             $("#gallery").prepend(add);
                  crown.finishPopupCenter();
              });
             return false;

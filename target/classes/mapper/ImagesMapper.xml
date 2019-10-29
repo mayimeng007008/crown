@@ -5,10 +5,45 @@
 	select count(*) from webimages where gallery_uuid=#{galleryUuid} and deleted="0"
 </select>
 
+<select id="groupList" resultType="Images">
+	SELECT
+		id, gallery_uuid, img_path
+	FROM webimages 
+	WHERE (deleted = 0) and cutheadimg =0
+		AND gallery_uuid = #{galleryUuid}
+	ORDER BY id DESC
+</select>
+
+<select id="getUUIDList" resultType="map">
+
+	SELECT gallery_uuid from
+	webimages WHERE update_date >
+	DATE_SUB(NOW(),INTERVAL 3 MINUTE) GROUP
+	BY gallery_uuid
+</select>
+
 <update  id="addImgVisits">
 		update webimages set visits=visits+1 where id=#{id}
 </update>
 <update  id="addImageThumbsUpById">
 		update webimages set thumbs_up=thumbs_up+#{num} where id=#{id}
+</update>
+<select id="getThumbsUpRanking" resultType="Images">
+select * from webimages  where gallery_uuid=#{uuid} order by thumbs_up desc
+</select>
+<select id="getVisitsRanking" resultType="Images">
+select * from webimages  where gallery_uuid=#{uuid} order by visits desc
+</select>
+<select id="getImgs" resultType="Images">
+select * from webimages  where cutheadimg=0 and deleted=0 and gallery_uuid=#{uuid}
+</select>
+<select id="findAllImgsByUuid" resultType="Images">
+select * from webimages  where watermarked=0 and deleted=0 and gallery_uuid=#{uuid}
+</select>
+<update  id="updateWaterMarkStatus">
+		update webimages set watermarked=1 where id=#{id}
+</update>
+<update  id="setCutHeadImg">
+		update webimages set cutheadimg=1 where id=#{id}
 </update>
 </mapper>

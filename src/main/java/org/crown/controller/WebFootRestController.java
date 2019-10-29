@@ -118,7 +118,7 @@ public class WebFootRestController extends SuperController {
     @PostMapping(value = "/upload")
     public ApiResponses<JsonUtil> imgUpload(HttpServletRequest req, @RequestParam("file") MultipartFile[] file,
                               ModelMap model) {
-    	Map<String, Object> map = uploadUtil.upload(file,"");
+    	Map<String, Object> map = uploadUtil.upload(file,"",0);
         JsonUtil j = new JsonUtil();
         j.setMsg(map);
         //j.setData(map);

@@ -14,6 +14,22 @@ update webimages set deleted = 1 where id=#{id}
 update webimages set deleted = 1 where gallery_uuid=#{uuId}
 
 </update>
+<update id="changeStatus">
+   update webactivity set status=#{status} where uuid=#{uuid}
+
+
+</update>
+<update id="addWaterMarkImg">
+   update webactivity set watermark_img=#{hightImgName} where uuid=#{uuid}
+
+
+</update>
+<update id="deleteWaterImgs">
+   update webactivity set watermark_img=null where uuid=#{uuid}
+
+
+</update>
+
 
 
 </mapper>

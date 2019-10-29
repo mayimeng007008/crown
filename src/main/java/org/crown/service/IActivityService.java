@@ -45,6 +45,14 @@ public interface IActivityService extends BaseService<Activity> {
 
 	PageView findVisits(String uuid);
 
+	void changeStatus(String uuid, Integer status);
+
+	void addWaterMarkImg(String hightImgName, String uuid);
+
+	void deleteWaterImgs(String uuId);
+
+	
+
 	
 
 }

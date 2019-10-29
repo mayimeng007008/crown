@@ -2,6 +2,8 @@ package org.crown.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.stream.FileImageInputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import org.crown.enums.AuthTypeEnum;
 import org.crown.framework.controller.SuperController;
 import org.crown.framework.responses.ApiResponses;
 import org.crown.model.dto.ImagesDTO;
+import org.crown.model.entity.HeadImg;
 import org.crown.model.entity.Images;
 import org.crown.service.IImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,39 +75,84 @@ public class ImagesRestController extends SuperController {
                         			ImagesDTO dto = entity.convert(ImagesDTO.class);
                         			int count=imagesService.findCount(galleryUuid);
                         			dto.setCount(count);
-                        			System.out.println(dto);
+                        			//System.out.println(dto);
                                     return dto;
                                 }
                         		)
         );
     }
     
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation("查询头像关联的所有照片")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "imagesId", value = "需要查询的照片的id的集合", paramType = "query")
+    })
+    @GetMapping("/imgsIn")
+    public ApiResponses<IPage<ImagesDTO>> getImagesByIds(@RequestParam(value = "imagesId", required = true) String imagesId) {
+    	Integer isOk = 0;
+    	String idss = imagesId.replace(" ", "");
+		Object[] ids = idss.split(",");
+    	return success(
+    			imagesService.query().in(StringUtils.isNotEmpty(imagesId), Images::getId, ids)
+    			.eq(true, Images::getDeleted, isOk).orderByDesc(Images::getCreateTime)
+    			.page(this.<Images>getPage())
+    			.convert(
+    					entity -> {
+    						ImagesDTO dto = entity.convert(ImagesDTO.class);
+    						return dto;
+    					}
+    					)
+    			);
+    }
+    
     
     
     @Resources(auth = AuthTypeEnum.AUTH)
-    @ApiOperation(value = "照片访问量")
+    @ApiOperation(value = "获取单张照片信息")
     @ApiImplicitParams({
     	@ApiImplicitParam(name = "id", value = "图片的id", required = true, paramType = "path")
     })
-    @GetMapping("/imgVisits")
-    public int imgVisits(@PathParam("id") int id ) {
+    @GetMapping("/getImgInfoById")
+    public Images imgVisits(@PathParam("id") int id ) {
     		imagesService.addImgVisits(id);
     		Images img= imagesService.findImageById(id);
-    		int visits = img.getVisits();
-    		return visits;
+    		return img;
     }
     @Resources(auth = AuthTypeEnum.AUTH)
-    @ApiOperation(value = "获取照片点赞量")
+    @ApiOperation(value = "获取照片对应人脸识别头像集合")
     @ApiImplicitParams({
-    	@ApiImplicitParam(name = "id", value = "图片的id", required = true, paramType = "path")
+    	@ApiImplicitParam(name = "ids", value = "头像的ids字符串", required = true, paramType = "path")
     })
-    @GetMapping("/getImgThumbsUp")
-    public int getImgThumbsUp(@PathParam("id") int id ) {
-    	
-    	Images img= imagesService.findImageById(id);
-    	int thumbsUp = img.getThumbsUp();
-    	return thumbsUp;
+    @GetMapping("/getHeadImgs")
+    public List<HeadImg> getHeadImgs(@PathParam("ids") String ids ) {
+    	String idss=ids.replace(" ","");
+    	String[] headimgids=idss.split(",");
+    	List<HeadImg> list = new ArrayList<>();
+    	for (int i = 0; i < headimgids.length; i++) {
+    		int id= Integer.parseInt(headimgids[i]);
+    		HeadImg img =imagesService.findHeadImgById(id);
+    		list.add(img);
+		}
+    	    	return list;
     }
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "通过人脸识别的头像获取对应的所有照片")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "ids", value = "照片的ids字符串", required = true, paramType = "path")
+    })
+    @GetMapping("/getImgsByHead")
+    public List<Images> getImgsByHead(@PathParam("ids") String ids ) {
+    	String idss=ids.replace(" ","");
+    	String[] imgids=idss.split(",");
+    	List<Images> list = new ArrayList<>();
+    	for (int i = 0; i < imgids.length; i++) {
+    		int id= Integer.parseInt(imgids[i]);
+    		Images img =imagesService.getImgsByHead(id);
+    		list.add(img);
+    	}
+    	return list;
+    }
+
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation(value = "添加照片点赞量")
     @ApiImplicitParams({
@@ -116,6 +164,48 @@ public class ImagesRestController extends SuperController {
     	imagesService.addImageThumbsUpById(id,num);
     	
     	
+    }
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "获取照片点赞排行")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "uuid", value = "相册的uuid", required = true, paramType = "path")
+    })
+    @GetMapping("/getThumbsUpRanking")
+    public List<Images> getThumbsUpRanking(@PathParam("uuid") String uuid) {
+    	List imgList = new ArrayList<>();
+    	List<Images> list=imagesService.getThumbsUpRanking(uuid);
+    	for (int i = 0; i < (list.size()>10?10:list.size()); i++) {
+			imgList.add(list.get(i));
+		}
+    	return imgList;
+    }
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "获取照片访问量排行")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "uuid", value = "相册的uuid", required = true, paramType = "path")
+    })
+    @GetMapping("/getVisitsRanking")
+    public List<Images> getVisitsRanking(@PathParam("uuid") String uuid) {
+    	List imgList = new ArrayList<>();
+    	List<Images> list=imagesService.getVisitsRanking(uuid);
+    	for (int i = 0; i <(list.size()>10?10:list.size()); i++) {
+			imgList.add(list.get(i));
+		}
+    	return imgList;
+    }
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "获取照片访问量排行")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "uuid", value = "相册的uuid", required = true, paramType = "path")
+    })
+    @GetMapping("/uploadWaterMarkImg")
+    public List<Images> uploadWaterMarkImg(@PathParam("uuid") String uuid) {
+    	List imgList = new ArrayList<>();
+    	List<Images> list=imagesService.getVisitsRanking(uuid);
+    	for (int i = 0; i <(list.size()>10?10:list.size()); i++) {
+    		imgList.add(list.get(i));
+    	}
+    	return imgList;
     }
     
     
@@ -163,7 +253,7 @@ public class ImagesRestController extends SuperController {
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation(value = "删除照片")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "照片uuID", required = true, paramType = "path")
+            @ApiImplicitParam(name = "id", value = "照片id", required = true, paramType = "path")
     })
     @DeleteMapping("/{id}")
     public ApiResponses<Void> delete(@PathVariable("id") Integer id) {

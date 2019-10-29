@@ -1,270 +1,476 @@
 <style>
-	.layui-this{
-		color: #1890ff !important;
-	}
-	
-	.layui-input{
-		width:30% !important;
-	}
-	
-	.model-form-footer {
-	    text-align: left;
-	    margin-left: 40px;
-	}
-	
-	.layui-table-tips-d {
-    position: absolute;
-    margin-left: -40px;
-    margin-top: 10px;
-    /* right: 0; */
-    /* top: 0; */
-    width: 20px;
-    height: 20px;
-    padding: 3px;
-    cursor: pointer;
-    background-color: #666;
-    border-radius: 50%;
-    color: #fff;
-    display: none;
+.layui-this {
+	color: #1890ff !important;
 }
+
+.layui-input {
+	width: 30% !important;
+}
+
+.model-form-footer {
+	text-align: left;
+	margin-left: 40px;
+}
+
+.layui-table-tips-d {
+	position: absolute;
+	margin-left: -40px;
+	margin-top: 10px;
+	/* right: 0; */
+	/* top: 0; */
+	width: 20px;
+	height: 20px;
+	padding: 3px;
+	cursor: pointer;
+	background-color: #666;
+	border-radius: 50%;
+	color: #fff;
+	display: none;
+}
+
+.layui-table-tips-e {
+	z-index: 999;
+	position: absolute;
+	margin-left: -40px;
+	margin-top: 10px;
+	/* right: 0; */
+	/* top: 0; */
+	width: 20px;
+	height: 20px;
+	padding: 3px;
+	cursor: pointer;
+	background-color: #666;
+	border-radius: 50%;
+	color: #fff;
+	/* display: none;  */
+}
+
 .layui-icon-close:before {
-    content: "\1006";
-    margin-left: 2px;
-    }
-    
-    .abcd {
-     position: absolute;
-   /*  border: 1px red solid; */
-    /* float: right; */
-    width: 15%;
-    height: 7%;
-    margin-left: 82%;
-    }
- .bbb {
-   /*  border: 1px red solid; */
-    position: absolute;
-    width: 11%;
-    height: 5%;
-    margin-top: -31px;
-    margin-left: 85.2%;
-    display: none;
+	content: "\1006";
+	margin-left: 2px;
 }
-li{
-    position: relative;
+
+.abcd, .abcd-head {
+	position: absolute;
+	/*  border: 1px red solid; */
+	/* float: right; */
+	width: 15%;
+	height: 7%;
+	margin-left: 82%;
 }
-    .eee{
-    width:100%;
-      z-index:999;
-    }
-    #cancel-button{
-    display:none;
-        position: absolute;
-         z-index:999;
-    }
-    #yes-botton{
-         display: none;
-    position: absolute;
-    margin-left: 24%;
-     z-index:999;
-    }
-    #delete-button{
-     position: absolute;
-      z-index:999;
-    }
-    #all-botton{
-     display: none;
-    position: absolute;
-    margin-left: 60%;
-     z-index:999;
-    }
-    #notAll-botton{
-     display: none;
-    position: absolute;
-    margin-left: 60%;
-     z-index:999;
-    
-    }
-    #yesall-botton{
- 	 display: none;
-    position: absolute;
-    margin-left: 24%;
-     z-index:999;
-    
-    
-    }
-    #div-top{
-    width:100%;
-    height:5%;
-    z-index:999;
-    
-    }
-    #div-count{
-     z-index:999;
-      width: 10%;
-    height: 4%;
-    position: absolute;
-  /*   border: 1px solid red; */
-    }
-  
+.abcd-head-head{
+position: absolute;
+	/*  border: 1px red solid; */
+	/* float: right; */
+	width: 15%;
+	height: 7%;
+	margin-left: 67%;
+
+}
+.abcd-person-head{
+position: absolute;
+	  /* border: 1px red solid; */ 
+	/* float: right; */
+	width: 15%;
+	height: 7%;
+	margin-left: 67%;
+
+}
+
+.bbb, .bbb-head {
+	/*  border: 1px red solid; */
+	position: absolute;
+	width: 11%;
+	height: 5%;
+	margin-top: -31px;
+	margin-left: 85.2%;
+	display: none;
+}
+
+li {
+	position: relative;
+}
+
+.eee, .eee-head {
+	width: 100%;
+	z-index: 999;
+}
+
+#cancel-button, #cancel-head-button ,#cancel-cheack-button,#cancel-person-botton{
+	display: none;
+	position: absolute;
+	z-index: 999;
+}
+
+#yes-botton, #yes-head-botton, #yes-cheack-botton,#yes-person-botton{
+	display: none;
+	position: absolute;
+	margin-left: 24%;
+	z-index: 999;
+}
+
+#delete-button, #delete-head-button, #delete-cheack-button {
+	position: absolute;
+	z-index: 999;
+}
+
+#all-botton, #all-head-botton, #all-cheack-botton {
+	display: none;
+	position: absolute;
+	margin-left: 60%;
+	z-index: 999;
+}
+ #person-botton{
+ z-index: 999;
+ 	display: none;
+ }
+
+#notAll-botton, #notAll-head-botton, #notAll-cheack-botton {
+	display: none;
+	position: absolute;
+	margin-left: 60%;
+	z-index: 999;
+}
+
+#yesall-botton, #yesall-head-botton {
+	display: none;
+	position: absolute;
+	margin-left: 24%;
+	z-index: 999;
+}
+
+#div-top {
+	width: 100%;
+	height: 5%;
+	z-index: 999;
+}
+
+#div-count {
+	z-index: 999;
+	width: 30%;
+	height: 4%;
+	position: absolute;
+	/*   border: 1px solid red; */
+}
+#delete-cheack-button{
+display: none;
+}
+#waterimg {
+	margin-left: 10%;
+}
+
+#addwater {
+	display: none;
+}
+
+#water-img {
+	border: 1px solid #c2c2c2;
+	background-color: #c9c9c9;
+}
 </style>
 
 <!-- Add mousewheel plugin (this is optional) -->
 <script type="text/javascript" src="assets/libs/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="assets/libs/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript"
+	src="assets/libs/jquery.mousewheel-3.0.6.pack.js"></script>
 <!-- Add fancyBox main JS and CSS files -->
-<script type="text/javascript" src="assets/libs/source/jquery.fancybox.js?v=2.1.3"></script>
-<link rel="stylesheet" type="text/css" href="assets/libs/source/jquery.fancybox.css?v=2.1.2" media="screen" />
+<script type="text/javascript"
+	src="assets/libs/source/jquery.fancybox.js?v=2.1.3"></script>
+<link rel="stylesheet" type="text/css"
+	href="assets/libs/source/jquery.fancybox.css?v=2.1.2" media="screen" />
 
-<script type="text/javascript" src="https://cdn.bootcss.com/jszip/3.2.2/jszip.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jszip/3.2.2/jszip.min.js"></script>
 
 <div class="layui-card">
-    <div class="layui-card-header">
-        <h2 class="header-title">照片管理</h2>
-        
-        <span class="layui-breadcrumb pull-right">
-          <a href="#!console">首页</a>
-          <a><cite>照片管理</cite></a>
-        </span>
-    </div>
-    
-    <h4 style="margin-left: 48px;">对图片直播相册中的照片进行添加、删除、移动与标签管理。相册剩余上传时间：9天，到期后不可再往相册上传照片。</h4>
-    <div class="layui-card-body">
-       	<div class="layui-tab layui-tab-card">
-		  <ul class="layui-tab-title">
-		    <li class="layui-this">照片管理</li>
-		    <li>活动基本信息</li>
-		    <li>活动详情</li>
-		  </ul>
-		  
-		  <div class="layui-tab-content" style="height: auto;padding: 0px;">
-		  
-		  	<div class="layui-tab-item layui-show">
-				<div class="layui-form-item" style="padding:10px;">
-		  	
-			        <div id="wapperImg" style="osition: relative;overflow: auto;
-		            clear: both;height: 630px">
-		            <div id= "div-top">
-		            <div id="div-count">
-		           	<button id="count-botton" class="layui-btn layui-btn-sm layui-btn-normal">全部(<span id="span-count">0</span>)</button>
-		            </div>
-		            <div class="abcd">
-			        	<button id="cancel-button" class="layui-btn layui-btn-sm layui-btn-normal">取消</button>
-			        	<button id ="yes-botton" class="layui-btn layui-btn-sm layui-btn-danger ">删除</button>
-			        	<button id ="yesall-botton" class="layui-btn layui-btn-sm layui-btn-danger ">删除</button>
-			        	<button id ="all-botton" class="layui-btn layui-btn-sm layui-btn-danger ">全选</button>
-			        	<button id ="notAll-botton" class="layui-btn layui-btn-sm layui-btn-danger ">取消全选</button>
-			        	<button id="delete-button" class="layui-btn layui-btn-sm layui-btn-normal">删除照片</button>
-			        	</div>
-			        	</div>
-			        	<ul class="flow-default" id="flowContent">
-			        		<li style="display: inline-block; cursor: pointer" id="addImg">
-			        			<img alt="照片管理" height="186px" width="186px" style="margin:5px;" 
-			        			src="assets/images/default.png" class="layui-upload-img uploadImgPreView" >
-			        		</li>
-			        	<li></li> 
-			        	
-			        		
-			        	</ul>
-			       
-			        </div>
-			
-			    </div>
-			</div>
-			
-			
-		    <div class="layui-tab-item">
-		    	<form id="activity" lay-filter="activity" class="layui-form">
-				<div class="layui-form-item" style="padding:10px;">
-		  			<div class="layui-form-item" >
-				        <label class="layui-form-label">活动主题*</label>
-				        <div class="layui-input-block">
-				            <input id="theme" name="theme" placeholder="请输入活动主题" type="text" class="layui-input" maxlength="64" lay-verify=""/>
-				        </div>
-				    </div>
-				    
-		  			<div class="layui-form-item" >
-				        <label class="layui-form-label">副主题</label>
-				        <div class="layui-input-block">
-				            <input id="subtopic" name="subtopic" placeholder="请输入副主题" type="text" class="layui-input" maxlength="64" lay-verify=""/>
-				        </div>
-				    </div>
-				    
-		  			<div class="layui-form-item" >
-				        <label class="layui-form-label">活动时间</label>
-				        <div class="layui-input-block">
-				            <input id="activityDate" name="activityDate" placeholder="请输入活动时间" type="text" class="layui-input" maxlength="64" lay-verify=""/>
-				        </div>
-				    </div>
-				    
-		  			<div class="layui-form-item" >
-				        <label class="layui-form-label">活动地点</label>
-				        <div class="layui-input-block">
-				            <input id="address" name="address" placeholder="请输入活动地点" type="text" class="layui-input" maxlength="64" lay-verify=""/>
-				        </div>
-				    </div>
-				    <div class="layui-form-item model-form-footer">
-				        <button class="layui-btn" lay-filter="activity-form-submit" lay-submit>保存</button>
-				    </div>
-			    </div>
-			    </form>	
-			</div>
-			
-			
-			
-		    <div class="layui-tab-item">
-		    	<form id="activityDetailForm" lay-filter="activityDetail" class="layui-form">
-		    	<div class="layui-form-item" style="padding:10px;">
-		    		
-		  			<div class="layui-form-item" >
-		  				<label class="layui-form-label">标题<!-- （若不设置，则不显示详情按钮） --></label>
-				        <div class="layui-input-block">
-				            <input id="activityTitle" name="activityTitle" placeholder="请输入标题详情" type="text" class="layui-input" maxlength="64" lay-verify=""/>
-				        </div>
-				    </div>
-				    
-		  			<div class="layui-form-item" >
-				        <label class="layui-form-label">详情</label>
-				        <div class="layui-input-block">
-				            <textarea id="activity_Detail" onblur="$('#activityDetail').val($('#activity_Detail').val());" name="activity_Detail" placeholder="请输入详情内容" style="height: 100px;" class="layui-input" maxlength="500" lay-verify=""/>
-				        </div>
-				    </div>
-				    
-				    <div class="layui-form-item" id="addPhoto">
-		  				<label class="layui-form-label"></label>
-				    	<div class="layui-input-block" style="padding-top:20px;">
-				    		<button type="button" class="layui-btn" id="uploadImg2">
-							  <i class="layui-icon">&#xe67c;</i>添加图片
-							</button>
+	<div class="layui-card-header">
+		<h2 class="header-title">照片管理</h2>
+
+		<span class="layui-breadcrumb pull-right"> <a href="#!console">首页</a>
+			<a><cite>照片管理</cite></a>
+		</span>
+	</div>
+
+	<h4 style="margin-left: 48px;">对图片直播相册中的照片进行添加、删除、移动与标签管理。相册剩余上传时间：9天，到期后不可再往相册上传照片。</h4>
+	<div class="layui-card-body">
+		<div class="layui-tab layui-tab-card">
+			<ul class="layui-tab-title">
+				<li class="layui-this">照片管理</li>
+				<li>活动基本信息</li>
+				<li>活动详情</li>
+				<li>添加水印</li>
+				<li>人脸识别</li>
+			</ul>
+
+			<div class="layui-tab-content" style="height: auto; padding: 0px;">
+
+				<div class="layui-tab-item layui-show">
+					<!-- 照片管理 -->
+					<div class="layui-form-item" style="padding: 10px;">
+
+						<div id="wapperImg"
+							style="osition: relative; overflow: auto; clear: both; height: 630px">
+							<div id="div-top">
+								<div id="div-count">
+									<button id="count-botton"
+										class="layui-btn layui-btn-sm layui-btn-normal">
+										全部(<span id="span-count">0</span>)
+									</button>
+								</div>
+								<div class="abcd">
+									<button id="cancel-button"
+										class="layui-btn layui-btn-sm layui-btn-normal">取消</button>
+									<button id="yes-botton"
+										class="layui-btn layui-btn-sm layui-btn-danger ">删除</button>
+									<button id="yesall-botton"
+										class="layui-btn layui-btn-sm layui-btn-danger ">删除</button>
+									<button id="all-botton"
+										class="layui-btn layui-btn-sm layui-btn-danger ">全选</button>
+									<button id="notAll-botton"
+										class="layui-btn layui-btn-sm layui-btn-danger ">取消全选</button>
+									<button id="delete-button"
+										class="layui-btn layui-btn-sm layui-btn-normal">删除照片</button>
+								</div>
+							</div>
+							<ul class="flow-default" id="flowContent">
+								<li style="display: inline-block; cursor: pointer" id="addImg">
+									<img alt="照片管理" height="186px" width="186px"
+									style="margin: 5px;" src="assets/images/default.png"
+									class="layui-upload-img uploadImgPreView">
+								</li>
+								<li></li>
+
+
+							</ul>
+
 						</div>
-				    </div>
-				    <div class="layui-form-item" style="padding:10px;margin-left: 92px;">
-				        <div id="bannerImg">
-				        	
-				        </div>
-				
-				    </div>
-				    <input id="img1" name="img1" type="hidden">
-				    <input id="img2" name="img2" type="hidden">
-				    <input id="activityDetail" name="activityDetail" type="hidden">
-			    
-			    
-				    <div class="layui-form-item model-form-footer">
-				        <button id="saveHiddenVal" class="layui-btn" lay-filter="activity-detail-form-submit" lay-submit>保存</button>
-				    </div>
-			    </div>	
-			    </form>
+
+					</div>
+				</div>
+
+				<!-- 活动基本信息 -->
+				<div class="layui-tab-item">
+					<form id="activity" lay-filter="activity" class="layui-form">
+						<div class="layui-form-item" style="padding: 10px;">
+							<div class="layui-form-item">
+								<label class="layui-form-label">活动主题*</label>
+								<div class="layui-input-block">
+									<input id="theme" name="theme" placeholder="请输入活动主题"
+										type="text" class="layui-input" maxlength="64" lay-verify="" />
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">副主题</label>
+								<div class="layui-input-block">
+									<input id="subtopic" name="subtopic" placeholder="请输入副主题"
+										type="text" class="layui-input" maxlength="64" lay-verify="" />
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">活动时间</label>
+								<div class="layui-input-block">
+									<input id="activityDate" name="activityDate"
+										placeholder="请输入活动时间" type="text" class="layui-input"
+										maxlength="64" lay-verify="" />
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">活动地点</label>
+								<div class="layui-input-block">
+									<input id="address" name="address" placeholder="请输入活动地点"
+										type="text" class="layui-input" maxlength="64" lay-verify="" />
+								</div>
+							</div>
+							<div class="layui-form-item model-form-footer">
+								<button class="layui-btn" lay-filter="activity-form-submit"
+									lay-submit>保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+				<!-- 活动详情 -->
+				<div class="layui-tab-item">
+					<form id="activityDetailForm" lay-filter="activityDetail"
+						class="layui-form">
+						<div class="layui-form-item" style="padding: 10px;">
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">标题<!-- （若不设置，则不显示详情按钮） --></label>
+								<div class="layui-input-block">
+									<input id="activityTitle" name="activityTitle"
+										placeholder="请输入标题详情" type="text" class="layui-input"
+										maxlength="64" lay-verify="" />
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">详情</label>
+								<div class="layui-input-block">
+									<textarea id="activity_Detail"
+										onblur="$('#activityDetail').val($('#activity_Detail').val());"
+										name="activity_Detail" placeholder="请输入详情内容"
+										style="height: 100px;" class="layui-input" maxlength="500"
+										lay-verify="" />
+								</div>
+							</div>
+
+							<div class="layui-form-item" id="addPhoto">
+								<label class="layui-form-label"></label>
+								<div class="layui-input-block" style="padding-top: 20px;">
+									<button type="button" class="layui-btn" id="uploadImg2">
+										<i class="layui-icon">&#xe67c;</i>添加图片
+									</button>
+								</div>
+							</div>
+							<div class="layui-form-item"
+								style="padding: 10px; margin-left: 92px;">
+								<div id="bannerImg"></div>
+
+							</div>
+							<input id="img1" name="img1" type="hidden"> <input
+								id="img2" name="img2" type="hidden"> <input
+								id="activityDetail" name="activityDetail" type="hidden">
+
+
+							<div class="layui-form-item model-form-footer">
+								<button id="saveHiddenVal" class="layui-btn"
+									lay-filter="activity-detail-form-submit" lay-submit>保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<!-- 添加水印 -->
+				<div class="layui-tab-item">
+					<form id="activityDetailForm" lay-filter="activityDetail"
+						class="layui-form">
+						<div class="layui-form-item" style="padding: 10px;">
+
+
+							<div class="layui-form-item">
+								<p id="waterimg">添加水印图片</p>
+
+							</div>
+
+							<div class="layui-form-item" id="addPhoto2">
+								<label class="layui-form-label"></label>
+								<div class="layui-input-block" style="padding-top: 20px;">
+									<button type="button" class="layui-btn" id="uploadImg3">
+										<i class="layui-icon">&#xe67c;</i>添加图片
+									</button>
+								</div>
+							</div>
+							<div class="layui-form-item"
+								style="padding: 10px; margin-left: 92px;">
+								<div id="waterImg"></div>
+
+							</div>
+							<input id="img1" name="img1" type="hidden"> <input
+								id="img2" name="img2" type="hidden"> <input
+								id="activityDetail" name="activityDetail" type="hidden">
+
+
+							<div id="addwater" class="layui-form-item model-form-footer">
+								<button id="addwater-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">添加水印</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<!-- 人脸识别 -->
+				<div class="layui-tab-item">
+					<div id="wapperImg-head"
+						style="osition: relative; overflow: auto; clear: both; height: 630px">
+						<div id="div-top">
+							<div id="div-count">
+								<button id="count-head-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">
+									已确认(<span id="span-head-count">0</span>)
+								</button>
+								<button id="count-unhead-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">
+									未确认(<span id="span-unhead-count">0</span>)
+								</button>
+								<button id="count-cutheacd-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">
+									检测头像
+								</button>
+								<button id="count-compare-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">
+									开始比对
+								</button>
+								<button id="count-person-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">
+									人物列表(<span id="span-uncheackhead-count">0</span>)
+								</button>
+							</div>
+							<div class="abcd-head">
+								<button id="cancel-head-button"
+									class="layui-btn layui-btn-sm layui-btn-normal">取消</button>
+								<button id="yes-head-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">删除</button>
+								<button id="all-head-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">全选</button>
+								<button id="notAll-head-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">取消全选</button>
+								<button id="delete-head-button"
+									class="layui-btn layui-btn-sm layui-btn-normal">删除</button>
+							</div>
+							<div class="abcd-head-head">
+								<button id="cancel-cheack-button"
+									class="layui-btn layui-btn-sm layui-btn-normal">取消</button>
+								<button id="yes-cheack-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">确认</button>
+								<button id="all-cheack-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">全选</button>
+								<button id="notAll-cheack-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">取消全选</button>
+								<button id="delete-cheack-button"
+									class="layui-btn layui-btn-sm layui-btn-normal">确认头像</button>
+							</div>
+							<div class="abcd-person-head">
+								<button id="cancel-person-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">取消</button>
+								<button id="yes-person-botton"
+									class="layui-btn layui-btn-sm layui-btn-danger ">确定</button>
+								<button id="person-botton"
+									class="layui-btn layui-btn-sm layui-btn-normal">筛选人物</button>
+							</div>
+						</div>
+						<ul class="flow-head-default" id="flowContent-img">
+
+							<!-- <li id="head-li"></li>  -->
+
+
+
+						</ul>
+						<ul class="flow-head-default" id="flowContent-head">
+
+							<!-- <li id="head-li"></li>  -->
+
+
+
+						</ul>
+
+					</div>
+				</div>
+
 			</div>
-			
-		  </div>
 		</div>
-		
+
 		<!-- 表格顶部操作列 -->
-        <script type="text/html" id="pageClicks-toolbar">
+		<script type="text/html" id="pageClicks-toolbar">
             <div class="layui-btn-container">
                 
             </div>
         </script>
-    </div>
+	</div>
 </div>
 
 <script>
@@ -289,7 +495,7 @@ li{
               elem: '#uploadImg2' //绑定元素
               ,url: '/activity/upload' //上传接口
               ,headers: {Authorization: config.getToken()},
-              data: {"uuid": null},
+              data: {"uuid": null,"iswatermatk":0},
   	        accept: "images", //普通文件
   	        exts: 'jpg|png|jpeg|gif',//设置可上传文件
   	        multiple: false, //多文件上传
@@ -299,7 +505,7 @@ li{
                     obj.preview(function(index, files, result) {
                         $('#bannerImg').append('<p style="position: relative;float: left;"><img src="' + result 
                             + '" alt="' + files.name 
-                            +'"height="92px" width="92px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><i class="layui-icon layui-table-tips-d layui-icon-close"></i></p>');
+                            +'"height="186px" width="186px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><i class="layui-icon layui-table-tips-d layui-icon-close"></i></p>');
                     }); 
                 }
               ,done: function(res, index, upload){
@@ -323,6 +529,44 @@ li{
                 //请求异常回调
               }
             });
+        //添加水印图片
+          var uploadInst = upload.render({
+              elem: '#uploadImg3' //绑定元素
+              ,url: '/activity/upload' //上传接口
+              ,headers: {Authorization: config.getToken()},
+              data: {"uuid": uuid,"iswatermatk":1},
+  	        accept: "images", //普通文件
+  	        exts: 'jpg|png|jpeg|gif',//设置可上传文件
+  	        multiple: false, //多文件上传
+  	        size:10240,//图片大小10M
+           	before: function(obj){
+           		 //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, files, result) {
+                        $('#waterImg').append('<p style="position: relative;float: left;"><img id="water-img" src="' + result 
+                            + '" alt="' + files.name 
+                            +'" width="186px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><i class="layui-icon layui-table-tips-d layui-icon-close"></i></p>');
+                    }); 
+                }
+              ,done: function(res, index, upload){
+              	//console.log(res);
+              	$("#addwater").css("display","block");
+                var count = $("#waterImg").children().length;
+      		  //-----------------------------------------------------------------------------
+      		 //判断图片数量
+      		 // var count = $("#img").length;
+      		 
+      		  if(count >=1){
+      			 
+      			  $("#addPhoto2").hide();
+      		  } else {
+      			  $("#addPhoto2").show();
+      		  }
+      		  	
+              },error: function(e){
+                console.log(e);
+                //请求异常回调
+              }
+            });
           //-----------------------------------------------------------------------------
         //回显基本信息内容
           crown.get('/activity/' + uuid, {async:false}, function (data) {
@@ -333,6 +577,7 @@ li{
     		  $("#address").val(data.result.address);
               
           });
+      
           //-----------------------------------------------------------------------------
           //回显详情内容
           crown.get('/activityDetail/' + uuid, {async:false}, function (data) {
@@ -368,6 +613,50 @@ li{
     			  $("#addPhoto").show();
     		  }
           });
+          //回显水印
+          crown.get('/activity/' + uuid, {async:false}, function (data) {
+        	  $("#waterImg").val(data.result.watermarkImg);
+    		  //bannerImg
+    		  var waterImg =data.result.watermarkImg?data.result.watermarkImg:"";
+    		  console.log(waterImg);
+    		 
+    		  if(waterImg !=""){
+    		  	$("#waterImg").append('<p style="position: relative;float: left;"><img id="water-img" src="./image/' + data.result.watermarkImg
+                      +'" width="186px" style="margin:5px;"class="img-aa layui-upload-img uploadImgPreView"><i id="deleteimg"  class="layui-icon layui-table-tips-d layui-icon-close"></i></p>');
+    		  } 
+    		  
+			  
+			  
+    		  var count = $("#waterImg").children().length;
+    		  //-----------------------------------------------------------------------------
+    		 //判断图片数量
+    		 // var count = $("#img").length;
+    		 
+    		  if(count >=1){
+    			 
+    			  $("#addwater").show();
+    			  $("#addPhoto2").hide();
+    		  } else {
+    			  $("#addwater").hide();
+    			  $("#addPhoto2").show();
+    		  }
+          });
+          //删除水印
+        	$('#deleteimg').click(function () {
+        		 $("#addwater").hide();
+        		 $("#addPhoto2").show();
+        		// $(e.target).parent().remove();
+        		 crown.get("/activity/deleteWaterImgs?uuId="+uuid,{data:{}}, function (data) {
+	              
+	               });
+		  	});
+          //执行水印操作
+          $('#addwater-botton').click(function () {
+        		alert("添加水印成功！")
+        		 crown.get("/activity/addWaterImgs?uuId="+uuid,{data:{}}, function (data) {
+	              	
+	               });
+		  	});
           //-----------------------------------------------------------------------------
        	  // 活动基本信息表单提交事件
           form.on('submit(activity-form-submit)', function (data) {
@@ -394,6 +683,12 @@ li{
 		  		if(imgPathArr.length >= 2){
 		  			$("#img1").val(imgPathArr[0]);
     			  	$("#img2").val(imgPathArr[1]);
+		  		}else if(imgPathArr.length==1){
+		  			if($("#img1").val()==""){
+		  				$("#img1").val(imgPathArr[0]);
+		  			}else{
+		  				$("#img2").val(imgPathArr[0]);
+		  			}
 		  		}
 		  		
 		  	});
@@ -411,14 +706,7 @@ li{
               return false;
           });
           //-----------------------------------------------------------------------------  
-         //封装查询照片数量方法
-        function findCount(){
-        	 var imgcount= $("#flowContent").children().length-2;
-             if(imgcount==0){
-            	 $("#delete-button").hide();
-             }
-          	$("#count-botton").html("全部（"+imgcount+")")
-          }
+        
        
 		
         
@@ -527,6 +815,7 @@ li{
 	        	$(".bbb").css("display","block");
 	        	 $("#delete-button").hide();
 	         })
+	      
 	          //-----------------------------------------------------------------------------
 	         //全选点击事件
 	         $("#all-botton").click(function(){
@@ -548,16 +837,17 @@ li{
 	         })
 	         //-----------------------------------------------------------------------------
 	         //选择照片变换状态
-	    /*      $('body').on('click','.layui-upload-img',function(e){
-	        	if($("#delete-button").css("display")=="none"){
-	        		
-	        		 if($(e.target).next().children().attr('src')=='./assets/images/unselected.png'){
-	 	 				$(e.target).next().children().attr('src','./assets/images/selected.png');
+	        $('body').on('click','.fancybox',function(e){
+	         	if($("#delete-button").css("display")=="none"){
+	        		 if($(e.target).parent().next().children().attr('src')=='./assets/images/unselected.png'){
+	        			
+	 	 				$(e.target).parent().next().children().attr('src','./assets/images/selected.png');
 	 	 			}else{
-	 	 				$(e.target).next().children().attr('src','./assets/images/unselected.png');
+	 	 				$(e.target).parent().next().children().attr('src','./assets/images/unselected.png');
 	 	 			}
+	        		 return false;
 	        	}
-	         }); */
+	         }); 
 	         //------------------------------------------------------------------------------
 	         //小图标选择改变状态
 	         $('body').on('click','.eee',function(e){
@@ -604,7 +894,6 @@ li{
 	  			        	 $("#yes-botton").css("display","none");
 	  			        	 $("#delete-button").show();
 	  						 crown.get("/activity/deleteSelectedImgs?ids="+srcArray,{data:{}}, function (data) {
-	  			                  console.log(data);
 	  			               });
 	  					 }
 
@@ -626,9 +915,547 @@ li{
 			        	$("#addImg").siblings().remove();
 			        	$("#span-count").html(0);
 			        	 crown.get("/activity/deleteAllImgs?uuId="+uuid,{data:{}}, function (data) {
- 			                  console.log(data);
+ 			               
  			               });
 	         })
+	         
+	         //-----------------------------------------------------人脸识别/头像管理部分
+	         //当前状态，点击的哪个按钮，1为待审核，0为待确认按钮
+	         var status=2;
+	         //封装查询头像数量方法
+	         function findCount(){
+	         	 crown.get("/headImg/getHeadCount?uuid="+uuid,{data:{}}, function (data) {
+	         		 $("#span-unhead-count").html(data.result[0]);
+	         		$("#span-uncheackhead-count").html(data.result[1])
+	         		 $("#span-head-count").html(data.result[2]);
+	         		if(data.result[0]!=0){
+	         			$("#count-unhead-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm");
+	         		}
+	         		if(data.result[1]!=0){
+	         			$("#count-uncheack-botton").attr("class","layui-btn layui-btn-sm layui-btn-danger");
+	         		}
+	              });
+	           }
+	         //自动加载获取已确认头像
+ 				findCount()
+	 	        flow.load({
+	 	          elem: '#flowContent-head' //指定列表容器
+	 	          ,scrollElem: '#flowContent-head' 
+	 	          ,isLazyimg: true
+	 	          ,isAuto: true
+	 	          ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+	 	            var list = [];
+	           		crown.get('/headImg/getAllImgs', {data:{uuid: uuid,needCheack:2 ,cursor:page}}, function (data) {
+	                 	pages = data.result.pages;
+	                     data = data.result.records;
+	                     layui.each(data, function(index, item){
+	                     	list.push('<li style="display: inline-block;"><img data='+item.imagesId+' data2='+item.id+' class="head-img" src="./image/' + item.imgName
+	                                 + '" alt="'  
+	                                 +'" width="100px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><div class="bbb-head"><img data='+item.id+' data1='+item.needCheack+' class="eee-head" src="./assets/images/unselected.png"></img></div></li>');
+	                     }); 
+	                    //加载更多提升信息
+	                     next(list.join(''), page < pages);
+	                     //显示相片数量
+	                 }); 
+	 	          }
+	 	        });
+	         //点击获取已经确认头像
+ 				 $("#count-head-botton").click(function(){
+ 					 $("#person-botton").css("display","none")
+ 					 $("#delete-cheack-button").css("display","none");
+ 					$('#flowContent-head').children().remove();
+ 					$('#flowContent-img').children().remove();
+ 				    flow.load({
+ 			 	          elem: '#flowContent-head' //指定列表容器
+ 			 	          ,scrollElem: '#flowContent-head' 
+ 			 	          ,isLazyimg: true
+ 			 	          ,isAuto: true
+ 			 	          ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+ 			 	            var list = [];
+ 			           		crown.get('/headImg/getAllImgs', {data:{uuid: uuid, needCheack:2,cursor:page}}, function (data) {
+ 			                 	pages = data.result.pages;
+ 			                     data = data.result.records;
+ 			                     layui.each(data, function(index, item){
+ 			                     	//console.log(item.imgPath);
+ 			                     	list.push('<li style="display: inline-block;"><img  data='+item.imagesId+' data2='+item.id+' class="head-img" src="./image/' + item.imgName
+ 			                                 + '" alt="'  
+ 			                                 +'" width="100px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><div class="bbb-head"><img data='+item.id+' data1='+item.needCheack+' class="eee-head" src="./assets/images/unselected.png"></img></div></li>');
+ 			                     }); 
+ 			                    //加载更多提升信息
+ 			                     next(list.join(''), page < pages);
+ 			                     //显示相片数量
+ 			                    if(data==""){
+ 			                		 $("#delete-head-button").css("display","none");
+ 			                		 $("#delete-cheack-button").css("display","none");
+ 			                	}else{
+ 			                		 $("#delete-head-button").css("display","block");
+ 			                	}
+ 			                     
+ 			                 }); 
+ 			 	          }
+ 			 	        });
+ 		         })
+ 		         
+ 		         
+ 		         //点击获取人物（去重头像）
+ 		          $("#count-person-botton").click(function(){
+ 		        	 $("#delete-cheack-button").css("display","none");
+ 		        	 $("#person-botton").css("display","none");
+ 		        	 $("#delete-head-button").css("display","none");
+ 		        	  status=1;
+ 		        	 $('#flowContent-img').children().remove();
+ 		        	 $('#flowContent-head').children().remove();
+	             flow.load({
+		 	          elem: '#flowContent-head' //指定列表容器
+		 	          ,scrollElem: '#flowContent-head' 
+		 	          ,isLazyimg: true
+		 	          ,isAuto: true
+		 	          ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+		 	            var list = [];
+		           		crown.get('/headImg/allImgs', {data:{galleryUuid: uuid, cursor:page}}, function (data) {
+		           			console.log(data)
+		                 	pages = data.result.pages;
+		                     data = data.result.records;
+		                     layui.each(data, function(index, item){
+		                     	//console.log(item.imgPath);
+		                     	list.push('<li style="display: inline-block;"><img data='+item.imagesId+' data2='+item.id+' class="head-img" src="./image/' + item.imgName
+		                                 + '" alt="'  
+		                                 +'" width="100px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><div class="bbb-head"><img data='+item.id+' data1='+item.needCheack+' class="eee-head" src="./assets/images/unselected.png"></img></div></li>');
+		                     }); 
+		                    //加载更多提升信息
+		                     next(list.join(''), page < pages);
+		                     //显示相片数量
+		                     if(data!=""){
+		                    	 $("#person-botton").css("display","block");
+		                	}else{
+		                		
+		                	}
+		                 
+		                  	
+		                 }); 
+		 	          }
+		 	        });
+	         })
+	         
+	         //点击获取待确认头像
+	          $("#count-unhead-botton").click(function(){
+	        	  status=0;
+	        	  $('#flowContent-img').children().remove();
+	               $('#flowContent-head').children().remove();
+	             flow.load({
+		 	          elem: '#flowContent-head' //指定列表容器
+		 	          ,scrollElem: '#flowContent-head' 
+		 	          ,isLazyimg: true
+		 	          ,isAuto: true
+		 	          ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+		 	            var list = [];
+		           		crown.get('/headImg/getAllImgs', {data:{uuid: uuid,needCheack:0,cursor:page}}, function (data) {
+		           			console.log(data)
+		                 	pages = data.result.pages;
+		                     data = data.result.records;
+		                     layui.each(data, function(index, item){
+		                     	//console.log(item.imgPath);
+		                     	list.push('<li style="display: inline-block;"><img data='+item.imagesId+' data2='+item.id+' class="head-img" src="./image/' + item.imgName
+		                                 + '" alt="'  
+		                                 +'" width="100px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><div class="bbb-head"><img data='+item.id+' data1='+item.needCheack+' class="eee-head" src="./assets/images/unselected.png"></img></div></li>');
+		                     }); 
+		                    //加载更多提升信息
+		                     next(list.join(''), page < pages);
+		                     //显示相片数量
+		                     if(data==""){
+		                		 $("#delete-head-button").css("display","none");
+		                		 $("#delete-cheack-button").css("display","none");
+		                	}else{
+		                		 $("#delete-cheack-button").css("display","block");
+		                		 $("#delete-head-button").css("display","block");
+		                	}
+		                 
+		                  	
+		                 }); 
+		 	          }
+		 	        });
+	         })
+	         
+	 	    
+	         
+	         //删除按钮
+ 			   $("#delete-head-button").click(function(){
+ 		        	 $("#cancel-head-button").css("display","block");
+ 		        	 $("#yes-head-botton").css("display","block");
+ 		        	 $("#all-head-botton").css("display","block");
+ 		        	$(".bbb-head").css("display","block");
+ 		        	 $("#delete-head-button").hide();
+ 		         })
+ 		         //全选按钮
+ 		          $("#all-head-botton").click(function(){
+	        	 $("#all-head-botton").css("display","none");
+	        	 $("#notAll-head-botton").css("display","block");
+	        	 $(".eee-head").attr('src','./assets/images/selected.png')
+ 		         }) 
+ 		         //取消全选按钮
+ 		         $("#notAll-head-botton").click(function(){
+	        	 $("#yes-head-botton").css("display","block");
+	        	 $("#all-head-botton").css("display","block");
+	        	 $("#notAll-head-botton").css("display","none");
+	        	 $(".eee-head").attr('src','./assets/images/unselected.png')
+	         })
+	         //选择照片变换状态
+		        $('body').on('click','.head-img',function(e){
+		        	if($("#delete-head-button").css("display")=="none"&&$("#person-botton").css("display")=="none"){
+		        		 if($(e.target).next().children().attr('src')=='./assets/images/unselected.png'){
+		        			
+		 	 				$(e.target).next().children().attr('src','./assets/images/selected.png');
+		 	 			}else{
+		 	 				$(e.target).next().children().attr('src','./assets/images/unselected.png');
+		 	 			}
+		        		 return false;
+		        	}
+		         });
+	         
+	         //点击小图标更改状态
+ 			    $('body').on('click','.eee-head',function(e){
+ 		        	 if($(e.target).attr('src')=='./assets/images/unselected.png'){
+ 		 				$(e.target).attr('src','./assets/images/selected.png');
+ 		 			}else{
+ 		 				$(e.target).attr('src','./assets/images/unselected.png');
+ 		 			}
+ 		         });
+ 			//点击取消按钮，取消删除
+				$("#cancel-head-button").click(function(){
+	        	 $("#cancel-head-button").css("display","none");
+	        	 $("#yes-head-botton").css("display","none");
+	        	 $("#all-head-botton").css("display","none");
+		        $("#notAll-head-botton").css("display","none");
+	        	$(".bbb-head").css("display","none");
+	        	 $("#delete-head-button").show();
+	        	 $(".eee-head").attr('src','./assets/images/unselected.png')
+	         })
+	        //点击确定按钮，确定删除
+ 				$("#yes-head-botton").click(function(){
+ 					var deletecount=0
+ 					var srcArray = [];
+	  					 $(".eee-head").each(function(){
+	  						var src = this.src;
+	  					var imgsrc = src.substr(src.lastIndexOf("/")).substring(1);
+	  						if(imgsrc=="selected.png"){
+	  							var id = $(this).attr("data");
+	  							var cheack =  $(this).attr("data1");
+	  							if(cheack==1){
+	  								deletecount=deletecount+1;
+	  								console.log(deletecount);
+	  							}
+	  							$(this).parent().parent().remove();
+	  							srcArray.push(id);
+	  						}
+	  					 })
+	  					
+	  					 if(srcArray==""){
+	  						 alert("请选择照片！");
+	  					 }else{
+	  						$(".bbb-head").css("display","none");
+	  						 $("#all-head-botton").css("display","none");
+	  			        	 $("#notAll-head-botton").css("display","none");
+	  						 $("#cancel-head-button").css("display","none");
+	  			        	 $("#yes-head-botton").css("display","none");
+	  			        	 $("#delete-head-button").show();
+	  						 crown.get("/headImg/deleteSelectedHeadImgs?ids="+srcArray,{data:{}}, function (data) {
+	  			               });
+	  					 }
+
+	  					 //修改照片数量
+	  					var oldCount=$("#span-head-count").html();
+	  					var oldcheackCount=$("#span-uncheackhead-count").html();
+            	var newCount=parseInt(oldCount)-srcArray.length;
+            	var newcheackCount=parseInt(oldcheackCount)-srcArray.length;
+            	if(newCount==0){
+            		 $("#delete-head-button").css("display","none");
+            	}
+              	$("#span-head-count").html(newCount)
+              	//$("#span-uncheackhead-count").html(newcheackCount)
+	         })
+	         
+	        
+	        
+	     	
+ 			//点击头像显示照片
+				$('body').on('click','.head-img',function(e){
+					$(".head-img").css("border","none");
+					$(e.target).css("border","5px solid #1E9FFF");
+					
+					 $('#flowContent-img').children().remove();
+					var imgsids=$(e.target).attr('data');
+					var headid=$(e.target).attr('data2');
+				      flow.load({
+			 	          elem: '#flowContent-img' //指定列表容器
+			 	          ,scrollElem: '#flowContent-img' 
+			 	          ,isLazyimg: true
+			 	          ,isAuto: true
+			 	          ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+			 	            var list = [];
+			           		crown.get('/images/imgsIn', {data:{imagesId: imgsids, cursor:page}}, function (data) {
+			           			console.log(data)
+			                 	pages = data.result.pages;
+			                     data = data.result.records;
+			                     layui.each(data, function(index, item){
+			                     	//console.log(item.imgPath);
+			                     	list.push('<li style="display: inline-block;"><a class="fancybox" href="./image/' + item.imgPath + '" data-fancybox-group="gallery"><img class="head-of-image" src="./image/' + item.scaleImgPath 
+			                                + '" alt="' + item.imgName 
+			                                +'"height="186px" width="186px" style="margin:5px;" class="layui-upload-img uploadImgPreView"><i data='+item.id+' headid='+headid+' class="layui-icon layui-table-tips-e layui-icon-close"></i></a></li>');
+			                     }); 
+			                    //加载更多提升信息
+			                     next(list.join(''), page < pages);
+			                     //显示相片数量
+			                 }); 
+			 	          }
+			 	        }); 
+		         }); 
+			
+ 			//删除出匹配错误的照片
+				$('body').on('click','.layui-table-tips-e',function(e){
+					return false;
+					
+		         })
+				$('body').on('click','.layui-table-tips-e',function(e){
+					var imgId=$(e.target).attr('data');
+					var headId=$(e.target).attr('headId');
+					 crown.get("/headImg/removeImgsId",{data:{id:headId,imgId:imgId}}, function (data) {
+						 console.log(data.result);
+						 if(data.result==200){
+							 $(e.target).parent().parent().remove();
+						 }else{
+							 alert("这是头像源照片，请仔细核对！")
+						 }
+		               });
+					
+					
+		         })
+		         //确认头像按钮
+			 $("#delete-cheack-button").click(function(){
+				 $("#delete-head-button").css("display","none");
+				 $("#cancel-cheack-button").css("display","block");
+		        	 $("#yes-cheack-botton").css("display","block");
+		        	 $("#all-cheack-botton").css("display","block");
+		        	$(".bbb-head").css("display","block");
+		        	 $("#delete-cheack-button").hide();
+	         })
+	         
+	         //全选按钮
+	         $("#all-cheack-botton").click(function(){
+	        	 $("#all-cheack-botton").css("display","none");
+	        	 $("#notAll-cheack-botton").css("display","block");
+	        	 $("#yesall-cheack-botton").css("display","block");
+	        	 $(".eee-head").attr('src','./assets/images/selected.png')
+	         })
+	          //-----------------------------------------------------------------------------	 
+	         
+	         //取消全选按钮
+ 		         $("#notAll-cheack-botton").click(function(){
+	        	 $("#yes-cheack-botton").css("display","block");
+	        	 $("#all-cheack-botton").css("display","block");
+	        	 $("#notAll-cheack-botton").css("display","none");
+	        	 $(".eee-head").attr('src','./assets/images/unselected.png')
+	         })
+	         
+	         //点击取消按钮，取确认
+				$("#cancel-cheack-button").click(function(){
+					$("#delete-head-button").css("display","block");
+	        	 $("#cancel-cheack-button").css("display","none");
+	        	 $("#yes-cheack-botton").css("display","none");
+	        	 $("#all-cheack-botton").css("display","none");
+		        $("#notAll-cheack-botton").css("display","none");
+	        	$(".bbb-head").css("display","none");
+	        	 $("#delete-cheack-button").show();
+	        	 $(".eee-head").attr('src','./assets/images/unselected.png')
+	         })
+	         
+	         //点击确定按钮，确定确认
+				$("#yes-cheack-botton").click(function(){
+					var deletecount=0
+					var srcArray = [];
+	  					 $(".eee-head").each(function(){
+	  						var src = this.src;
+	  					var imgsrc = src.substr(src.lastIndexOf("/")).substring(1);
+	  						if(imgsrc=="selected.png"){
+	  							var id = $(this).attr("data");
+	  							var cheack =  $(this).attr("data1");
+	  							if(cheack==1){
+	  								deletecount=deletecount+1;
+	  								console.log(deletecount);
+	  							}
+	  							$(this).parent().parent().remove();
+	  							srcArray.push(id);
+	  						}
+	  					 })
+	  					
+	  					 if(srcArray==""){
+	  						 alert("请选择照片！");
+	  					 }else{
+	  						$(".bbb-head").css("display","none");
+	  						$("#delete-head-button").css("display","block");
+	  						 $("#all-cheack-botton").css("display","none");
+	  			        	 $("#notAll-cheack-botton").css("display","none");
+	  						 $("#cancel-cheack-button").css("display","none");
+	  			        	 $("#yes-cheack-botton").css("display","none");
+	  			        	 $("#delete-cheack-button").show();
+	  						 crown.get("/headImg/updateCheack?ids="+srcArray,{data:{}}, function (data) {
+	  			               });
+	  					 }
+
+	  					 //修改照片数量
+	  					var oldCount=$("#span-head-count").html();
+	  					var oldcheack=$("#span-unhead-count").html();
+	  					var oldcheackCount=$("#span-uncheackhead-count").html();
+         	var newCount=parseInt(oldCount)+srcArray.length;
+         	var newcheack=parseInt(oldcheack)-srcArray.length;
+         	var newcheackCount=parseInt(oldcheackCount)-srcArray.length;
+         	if(newcheackCount<0){
+         		newcheackCount=0;
+         	}
+         	if(newCount==0){
+         		 $("#delete-cheack-button").css("display","none");
+         	}
+         	
+         	if(status==0){
+         		$("#span-head-count").html(newCount)
+         	 	$("#span-unhead-count").html(newcheack)
+         	 	$("#count-unhead-botton").attr("class","layui-btn layui-btn-sm layui-btn-normal");
+         	}else if(status==1){
+         		if(newcheackCount<=0){
+         			$("#count-uncheack-botton").attr("class","layui-btn layui-btn-sm layui-btn-normal");
+         		}
+         		$("#span-head-count").html(newCount)
+         		$("#span-uncheackhead-count").html(newcheackCount)
+         	}
+	         })
+	        //对比头像
+	        var t2;
+	         $("#count-compare-botton").click(function(){
+	        	 if($("#count-compare-botton").attr("class")=="layui-btn layui-btn-sm layui-btn-warm"){
+	        		 return false;
+	        	 }else{
+	        		 $("#count-compare-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm");
+        			 $("#count-compare-botton").html("比对中(0%)")
+        		 t2 = window.setInterval(getCompareStatus,1000); 
+	        		 $("#person-botton").css("display","none")
+		        	 crown.get("/headImg/compareHead?uuid="+uuid,{data:{}}, function (data) {
+		        		 $("#count-compare-botton").html("检测中(100%)")
+	        				setTimeout(aa,500);
+	                     function aa(){
+	                    	 alert(data[0]);
+	                     }	
+		               });
+	        	 }
+	        	
+	         })
+	         t2 = window.setInterval(getCompareStatus,1000); 
+	         //检测头像
+	         var t1;
+	         $("#count-cutheacd-botton").click(function(){
+	        	 if($("#count-cutheacd-botton").attr("class")=="layui-btn layui-btn-sm layui-btn-warm"){
+	        		 return false;
+	        	 }else{
+	        		 $("#count-cutheacd-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm");
+	        			 $("#count-cutheacd-botton").html("检测中(0%)")
+	        		 t1 = window.setInterval(getCutStatus,1000); 
+	        		 $("#person-botton").css("display","none")
+		        		crown.get("/headImg/doCutHeadImg?uuid="+uuid,{data:{}}, function (data) {
+		        			if(data[0].length>7){
+		        				var arr=data[0].split('个');
+			        			var arr1=arr[0].split('像');
+			        			var oldcount=$("#span-unhead-count").html();
+			        			oldcount=parseInt(oldcount);
+			        			var addcount=parseInt(arr1[1]);
+			        			if(addcount!=0){
+			        				var newcount=addcount+oldcount;
+			        				$("#span-unhead-count").html(newcount);
+			        				$("#count-unhead-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm")
+			        			}
+		        			}
+		        			
+		        			 $("#count-cutheacd-botton").html("检测中(100%)")
+		        				setTimeout(aa,500);
+		                     function aa(){
+		                    	 alert(data[0]);
+		                     }	
+		                    });
+	        	 }
+	        	 
+	        	
+	         })
+	          t1 = window.setInterval(getCutStatus,1000); 
+	         //筛选人物
+	         $("#person-botton").click(function(){
+	        	 $("#person-botton").css("display","none")
+	        	 $("#yes-person-botton").css("display","block")
+	        	 $("#cancel-person-botton").css("display","block")
+	        	 $(".bbb-head").css("display","block");
+	         })
+	         //筛选人物取消
+	         $("#cancel-person-botton").click(function(){
+	        	 $("#person-botton").css("display","block")
+	        	 $("#yes-person-botton").css("display","none")
+	        	 $("#cancel-person-botton").css("display","none")
+	        	 $(".bbb-head").css("display","none");
+	        	 $(".eee-head").attr('src','./assets/images/unselected.png')
+	        	 
+	         })
+	         //筛选人物确定
+	         $("#yes-person-botton").click(function(){
+	        		var srcArray = [];
+ 					 $(".eee-head").each(function(){
+ 						var src = this.src;
+ 					var imgsrc = src.substr(src.lastIndexOf("/")).substring(1);
+ 						if(imgsrc=="selected.png"){
+ 							var id = $(this).attr("data");
+ 							var cheack =  $(this).attr("data1");
+ 							if(cheack==1){
+ 								deletecount=deletecount+1;
+ 							}
+ 							$(this).parent().parent().remove();
+ 							srcArray.push(id);
+ 						}
+ 					 })
+ 					 if(srcArray==""){
+  						 alert("请选择照片！");
+  					 }else{
+  						 $("#person-botton").css("display","block")
+  			        	 $("#yes-person-botton").css("display","none")
+  			        	 $("#cancel-person-botton").css("display","none")
+  			        	 $(".bbb-head").css("display","none");
+  						 crown.get("/headImg/person?ids="+srcArray,{data:{}}, function (data) {
+  			               });
+  					 }
+	         })
+	        
+	         function getCutStatus(){ 
+					crown.get("/headImg/getCutStatus",{data:{}}, function (data) {
+					if(data[0]==201){
+						
+						$("#count-cutheacd-botton").html("检测头像")
+						$("#count-cutheacd-botton").attr("class","layui-btn layui-btn-sm layui-btn-normal");
+						clearTimeout(t1);
+					}else{
+						$("#count-cutheacd-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm");
+						$("#count-cutheacd-botton").html("检测中("+data[1]+"%)")
+						
+					}
+		               });	
+					} 
+	         function getCompareStatus(){ 
+					crown.get("/headImg/getCompareStatus",{data:{}}, function (data) {
+					if(data[0]==201){
+						$("#count-compare-botton").html("比对头像")
+						$("#count-compare-botton").attr("class","layui-btn layui-btn-sm layui-btn-normal");
+						clearTimeout(t2);
+					}else{
+						$("#count-compare-botton").attr("class","layui-btn layui-btn-sm layui-btn-warm");
+						$("#count-compare-botton").html("比对中("+data[1]+"%)")
+						
+					}
+		               });	
+					} 
+        
         }
+		
     });
 </script>

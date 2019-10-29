@@ -35,10 +35,19 @@ public class Images extends Convert {
      */
     private Integer deleted;
     /**
+     * 默认为0,1表示已经打了水印
+     */
+    private Integer watermarked=0;
+    /**
+     * 默认为0,1表示已经截取过头像了
+     */
+    private Integer cutheadimg=0;
+    /**
      * 相片数量
      */
     @TableField(exist = false )
     private Integer count;
+    
     /**
      * 访问量
      */
@@ -51,10 +60,17 @@ public class Images extends Convert {
     private Integer thumbsUp=0;
     
     /**
-     	*原始图片名称
+     	*此图片裁剪的头像集合
+     */
+    @TableField(value="head_img_ids")
+    private String headImgIds;
+    
+    /**
+     *原始图片名称
      */
     @TableField(value="img_name")
     private String imgName;
+    
     /**
      * 缩略图显示的图片名称路径
      */

@@ -108,6 +108,25 @@ public class ActivityServiceImpl extends BaseServiceImpl<ActivityMapper, Activit
 		return pageViewMapper.findVisits(uuid);
 	}
 
+	@Override
+	public void changeStatus(String uuid,Integer status) {
+		activityMapper.changeStatus(uuid,status);
+		
+	}
+
+	@Override
+	public void addWaterMarkImg(String hightImgName, String uuid) {
+		activityMapper.addWaterMarkImg(hightImgName,uuid);
+		
+	}
+
+	@Override
+	public void deleteWaterImgs(String uuId) {
+		activityMapper.deleteWaterImgs(uuId);
+	}
+
+
+
 	
 	
 }

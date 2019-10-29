@@ -1,8 +1,39 @@
 <style>
 img {
+    margin-top: 1px;
     border: none;
-    width: 100%;
+    width: 99%;
+    height: 100%;
 }
+.subtopic{
+
+
+}
+
+.themes {
+    width: 11.375rem;
+    height: 1.9375rem;
+    margin-top: 4px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    max-width: 10em;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+    /* border: blue solid 1px; */
+}
+
+.hideCheack {
+    margin-left: 75%;
+    width: 22%;
+    /* border: red solid 1px; */
+    float: right;
+    margin-top: -28px;
+}
+
+
 
 </style>
 
@@ -34,7 +65,6 @@ img {
 		    <li class="layui-this">全部</li>
 		    <li>待拍摄</li>
 		    <li>拍摄中</li>
-		    <li>已结束</li>
 		  </ul>
 		  
 		  <div class="layui-tab-content" style="height: auto;padding: 0px;">
@@ -43,7 +73,7 @@ img {
 					
 				</table> -->
 				<ul id="gallery">
-				<li id="addCard">
+				<li id="addCard" >
 					<div id="addGallery" class="gallery-item">
 						<div class="card-item">
 							<i>
@@ -93,6 +123,7 @@ img {
 
 <!-- <script type="text/javascript" src="assets/libs/layui/lay/modules/layer.js"></script> -->
 <script>
+
     layui.use(['form', 'table', 'config', 'crown', 'flow'], function () {
         var table = layui.table;
         var config = layui.config;
@@ -102,7 +133,6 @@ img {
         var $ = layui.jquery;
         
 		var flow = layui.flow, pages=0;
-        
         var loadFunc = function(){ flow.load({
 	          elem: '#gallery' //指定列表容器
 	          //,scrollElem: '#gallery' 
@@ -118,24 +148,37 @@ img {
 	                //<div class="item-status" style="background: rgb(175, 175, 175);">已结束</div>
 	                
 	                layui.each(data, function(index, item){
-	                	var str="暂无封面"
+	                	
+	                	//封面图片展示
+	                	var str="暂无封面";
 		                	if("undefined" != typeof item.themeImgPath){
 		                		str='<img src="./image/'+item.themeImgPath+'"></img>'
 		                	}
+	                	//是否在拍摄中标记
+	                	var strs='<div class="item-status" style="background: rgb(64, 71, 116);">拍摄中</div>';
+	                	if(item.count==0){
+	                		strs='<div class="item-status" style="background: rgb(255, 33, 49);">待拍摄</div>'
+	                	}
+	                	var status='<div class="hideCheack layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em >可见</em><i></i></div>'
+	                	if(item.status==0){
+	                		status='<div class="hideCheack layui-unselect layui-form-switch" lay-skin="_switch"><em >隐藏</em><i></i></div>'
+	                		
+	                	}
 	                	//console.log(item);
 	                	list.push("<li data = "+item.uuid+" class=\"edit-item\">\r\n" + 
 	       	 		"					<div class=\"gallery-item\">\r\n" + 
 	       	 		"						<div id=\"card-item\" class=\"card-item\">\r\n" + 
-	       	 		"							<div class=\"item-status\" style=\"background: rgb(255, 33, 49);\">待拍摄</div>\r\n" + 
+	       	 									strs + 
 	       	 		"							<div class=\"bg-img\">\r\n" + 
 	       	 		"								\r\n" + 
 	       	 									str+
 	       	 		"							</div>\r\n" + 
 	       	 		"							<div class=\"info-wrap\">\r\n" + 
-	       	 		"								<div class=\"theme\">\r\n" + 
-	       	 		"									<span>\r\n" + item.theme + 
-	       	 		"									</span>\r\n" + 
-	       	 		"								</div>\r\n" + 
+	       	 		"								<div class=\"themes\">\r\n" + 
+	       	 		'									<span class="span-theme">\r\n' + item.theme + 
+	       	 		'									</span>\r\n' + 
+	       	 		'								</div>'+status+'\r\n' + 
+	       	 									'	<div class="subtopic"><span>'+item.subtopic+'</span></div>'+
 	       	 		"								\r\n" + 
 	       	 		"								<div class=\"content-wrap\">\r\n" + 
 	       	 		"									<div class=\"place-wrap\">\r\n" + 
@@ -218,6 +261,28 @@ img {
         	//location.replace("#!homelink");
 	        searchFunc();
 	    });
+        
+        $('body').on('click','.hideCheack',function(){
+        	if($(this).attr("class")=="hideCheack layui-unselect layui-form-switch layui-form-onswitch"){
+        		$(this).attr("class","hideCheack layui-unselect layui-form-switch");
+        		$(this).find('em').html("隐藏");
+        		var uuid =$(this).parent().parent().parent().parent().attr("data");
+        		 crown.get("/activity/changeStatus?uuid="+uuid+"&status=0",{data:{}}, function (data) {
+	               });
+        	}else{
+        		$(this).attr("class","hideCheack layui-unselect layui-form-switch layui-form-onswitch");
+        		$(this).find('em').html("可见");
+        		var uuid =$(this).parent().parent().parent().parent().attr("data");
+        		 crown.get("/activity/changeStatus?uuid="+uuid+"&status=1",{data:{}}, function (data) {
+	               });
+        	} 
+        	
+        		 return false;
+        	
+         }); 
+        
+        
+        
         
         function searchFunc(){
         	$('#gallery').html("<li id=\"addCard\">\n" + 

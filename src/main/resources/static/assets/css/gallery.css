@@ -16,13 +16,13 @@
 		-ms-flex-line-pack: start;
 		align-content: flex-start;
 		-ms-flex-pack: justify;
-		justify-content: space-between;
+		/* justify-content: space-between; */
 	}
 	
 	#gallery li{
 		list-style: none;
 		display: inline-block;
-		margin-right: 20px;
+		margin-right: 54px;
    		margin-top: 15px;
 	}
 	.gallery-item{
@@ -60,7 +60,7 @@
 	}
 	
 	.bg-img{
-		height: 8.4375rem;
+		height: 9.4375rem;
 		/* background: blue; */
 	}
 	.info-wrap{
@@ -79,7 +79,7 @@
 	.theme{
 		
 		width: 14.375rem;
-		height: 4.9375rem;
+		height: 2.4rem;
 		margin: 0 auto;
 		//background: #1890FF;
 	}

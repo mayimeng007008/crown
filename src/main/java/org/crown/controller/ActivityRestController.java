@@ -1,11 +1,13 @@
 package org.crown.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
 import org.crown.common.annotations.Resources;
+import org.crown.common.utils.AddWaterMarkUtil;
 import org.crown.common.utils.JsonUtil;
 import org.crown.common.utils.UploadUtil;
 import org.crown.enums.AuthTypeEnum;
@@ -17,10 +19,12 @@ import org.crown.model.dto.ActivityDTO;
 import org.crown.model.dto.ActivityDetailDTO;
 import org.crown.model.entity.Activity;
 import org.crown.model.entity.ActivityDetail;
+import org.crown.model.entity.Images;
 import org.crown.model.entity.PageView;
 import org.crown.model.parm.ActivityPARM;
 import org.crown.service.IActivityDetailsService;
 import org.crown.service.IActivityService;
+import org.crown.service.IImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -63,7 +67,13 @@ public class ActivityRestController extends SuperController {
     private IActivityService activityService;
     
     @Autowired
+    private IImagesService imagesService;
+    
+    @Autowired
     private IActivityDetailsService activityDetailService;
+    
+    @Autowired
+    private AddWaterMarkUtil addWaterMarkUtil;
     
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation("查询所有活动")
@@ -87,12 +97,25 @@ public class ActivityRestController extends SuperController {
                         			   queryWrapper.eq("activity_uuid", atD.getUuid());
                         			   ActivityDetail activityDeail=activityDetailService.getOne(queryWrapper);
                         			atD.setThemeImgPath(activityDeail.getImg1());
-                        			//System.out.println(atD);
+                        			int count=imagesService.findCount(atD.getUuid());
+                        			atD.setCount(count);
                                     return atD;
                                 }
                         		//e -> e.convert(ActivityDTO.class)
                         		)
         );
+    }
+    
+    
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation("修改隐藏状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid", value = "活动uuID", required = true, paramType = "path")
+    })
+    @GetMapping("/changeStatus")
+    public void changeStatus(@PathParam("uuid") String uuid,@PathParam("status") Integer status) {
+    	activityService.changeStatus(uuid,status);
+       
     }
 
     @Resources(auth = AuthTypeEnum.AUTH)
@@ -102,12 +125,24 @@ public class ActivityRestController extends SuperController {
     })
     @GetMapping("/{uuid}")
     public ApiResponses<ActivityDTO> get(@PathVariable("uuid") String uuid) {
+    	//获取活动基本信息
         Activity activity = activityService.getById(uuid);
         ApiAssert.notNull(ErrorCodeEnum.USER_NOT_FOUND, activity);
+        //跟新访问量
         activityService.updateVisits(uuid);
+        //查询访问量
        PageView PV=  activityService.findVisits(uuid);
         ActivityDTO activityDTO = activity.convert(ActivityDTO.class);
         activityDTO.setVisits(PV.getVisits());
+        //获取封面照片
+        QueryWrapper<ActivityDetail> queryWrapper= new QueryWrapper<>();
+		   queryWrapper.eq("activity_uuid",uuid);
+		   ActivityDetail activityDeail=activityDetailService.getOne(queryWrapper);
+		   activityDTO.setThemeImgPath(activityDeail.getImg1());
+		   //获取照片数量
+		   activityService.updateVisits(uuid);
+	        int count=imagesService.findCount(uuid);
+	        activityDTO.setCount(count);
         System.out.println(activityDTO);
         return success(activityDTO);
     }
@@ -171,7 +206,7 @@ public class ActivityRestController extends SuperController {
     })
     @GetMapping("/deleteSelectedImgs")
     public void deleteSelectedImgs(@PathParam("ids") int[] ids) {
-    	activityService.deleteSelectedImgs(ids);
+    		activityService.deleteSelectedImgs(ids);
     }
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation(value = "删除全部照片")
@@ -181,6 +216,40 @@ public class ActivityRestController extends SuperController {
     @GetMapping("/deleteAllImgs")
     public void deleteAllImgs(@PathParam("uuId") String uuId ) {
     	activityService.deleteAllImgs(uuId);
+    }
+    
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "删除水印照片")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "uuId", value = "相册的uuId", required = true, paramType = "path")
+    })
+    @GetMapping("/deleteWaterImgs")
+    public void deleteWaterImgs(@PathParam("uuId") String uuId ) {
+    	activityService.deleteWaterImgs(uuId);
+    }
+    @Resources(auth = AuthTypeEnum.AUTH)
+    @ApiOperation(value = "给照片添加水印")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "uuId", value = "相册的uuId", required = true, paramType = "path")
+    })
+    @GetMapping("/addWaterImgs")
+    public void addWaterImgs(@PathParam("uuId") String uuId ) {
+    	 Activity activity = activityService.getById(uuId);
+    	 String iconPath=activity.getWatermarkImg();
+    	 List<Images> imgs=imagesService.findAllImgsByUuid(uuId);
+    	if(!imgs.isEmpty()) {
+    		
+    		for (Images image : imgs) {
+    			String srcImgPath=image.getImgPath();
+    			String scaleImgPath=image.getScaleImgPath();
+    			addWaterMarkUtil.markImageByIcon(iconPath, srcImgPath, srcImgPath);
+    			addWaterMarkUtil.markImageByIcon(iconPath, scaleImgPath, scaleImgPath);
+    			imagesService.updateWaterMarkStatus(image.getId());
+    			
+    		}
+    	}else {
+    		System.out.println("没有可添加水印的图片");
+    	}
     }
     
     
@@ -194,14 +263,10 @@ public class ActivityRestController extends SuperController {
     @ApiOperation(value = "上传图片")
     @PostMapping(value = "/upload")
     public ApiResponses<JsonUtil> imgUpload(HttpServletRequest req, @RequestParam("file") MultipartFile[] files,
-    		@RequestParam("uuid") String uuid, ModelMap model) {
-    	
-    	Map<String, Object> map = uploadUtil.upload(files, uuid);
-    	//System.out.println(map);
+    		@RequestParam("uuid") String uuid,int iswatermatk, ModelMap model) {
+    	Map<String, Object> map = uploadUtil.upload(files, uuid,iswatermatk);
         JsonUtil j = new JsonUtil();
         j.setMsg(map);
-        System.out.println(j);
-        //j.setData(map);
         return success(j);
     }
     

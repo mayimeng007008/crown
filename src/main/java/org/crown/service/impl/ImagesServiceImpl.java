@@ -1,27 +1,13 @@
-/*
- * Copyright (c) 2018-2022 Caratacus, (caratacus@qq.com).
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
 package org.crown.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.crown.framework.service.impl.BaseServiceImpl;
+import org.crown.mapper.HeadImgMapper;
 import org.crown.mapper.ImagesMapper;
+import org.crown.model.dto.ImagesDTO;
+import org.crown.model.entity.HeadImg;
 import org.crown.model.entity.Images;
 import org.crown.service.IImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +26,8 @@ public class ImagesServiceImpl extends BaseServiceImpl<ImagesMapper, Images> imp
 
 	@Autowired
 	ImagesMapper imagesMapper;
-	
+	@Autowired
+	HeadImgMapper headImgMapper;
 	@Override
 	public int findCount(String galleryUuid) {
 	
@@ -63,6 +50,63 @@ public class ImagesServiceImpl extends BaseServiceImpl<ImagesMapper, Images> imp
 	public void addImageThumbsUpById(int id, int num) {
 		
 		imagesMapper.addImageThumbsUpById(id,num);
+	}
+
+	@Override
+	public List<Images> getThumbsUpRanking(String uuid) {
+		
+		return imagesMapper.getThumbsUpRanking(uuid);
+	}
+
+	@Override
+	public List<Images> getVisitsRanking(String uuid) {
+		return imagesMapper.getVisitsRanking(uuid);
+	}
+
+	@Override
+	public HeadImg findHeadImgById(int id) {
+		
+		return headImgMapper.findHeadImgById(id);
+	}
+
+	@Override
+	public Images getImgsByHead(int id) {
+		
+		return imagesMapper.selectById(id);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> getUUIDList() {
+		return imagesMapper.getUUIDList();
+	}
+
+	@Override
+	public List<Images> groupList(String galleryUuid) {
+		return imagesMapper.groupList(galleryUuid);
+	}
+
+	@Override
+	public List<Images> getImgs(String uuid) {
+		return imagesMapper.getImgs(uuid);
+	}
+
+	@Override
+	public void setCutHeadImg(Integer id) {
+		System.out.println("我service执行了！");
+		System.out.println("我收到的id："+id);
+		imagesMapper.setCutHeadImg(id);
+		
+	}
+
+	@Override
+	public List<Images> findAllImgsByUuid(String uuId) {
+		
+		return imagesMapper.findAllImgsByUuid(uuId);
+	}
+
+	@Override
+	public void updateWaterMarkStatus(Integer id) {
+		imagesMapper.updateWaterMarkStatus(id);		
 	}
 
 	

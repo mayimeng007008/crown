@@ -40,4 +40,10 @@ public interface ActivityMapper extends BaseMapper<Activity> {
 
 	void deleteAllImgs(String uuId);
 
+	void changeStatus(String uuid, Integer status);
+
+	void addWaterMarkImg(String hightImgName, String uuid);
+
+	void deleteWaterImgs(String uuId);
+
 }

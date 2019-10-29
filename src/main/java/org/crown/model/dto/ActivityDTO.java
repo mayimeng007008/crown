@@ -67,6 +67,19 @@ public class ActivityDTO extends Convert {
     @ApiModelProperty(notes = "活动地址")
 	private String address;
     
+    @ApiModelProperty(notes = "水印地址")
+    private String watermarkImg;
+    /**
+     * 照片数量
+     */
+    @TableField(exist = false )
+    private Integer count;
+    
+    /**
+     * 相册状态：可见/隐藏
+     */
+    private Integer status=1;
+    
     @TableField(exist = false )
     @ApiModelProperty(notes = "活动封面图")
     private String themeImgPath;

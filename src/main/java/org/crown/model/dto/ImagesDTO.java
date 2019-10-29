@@ -1,31 +1,7 @@
-/*
- * Copyright (c) 2018-2022 Caratacus, (caratacus@qq.com).
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
 package org.crown.model.dto;
 
-import java.time.LocalDateTime;
-
-import org.crown.enums.StatusEnum;
 import org.crown.framework.model.convert.Convert;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 
 import io.swagger.annotations.ApiModel;
@@ -58,7 +34,12 @@ public class ImagesDTO extends Convert {
     @ApiModelProperty(notes = "相片数量")
     private Integer count;
     
-    
+    /**
+	 	*此图片裁剪的头像集合
+	 */
+    @ApiModelProperty(notes = "此图片裁剪的头像集合")
+	private String headImgIds;
+
     /**
 	 	*原始图片名称
 	 */
@@ -80,5 +61,4 @@ public class ImagesDTO extends Convert {
 	 */
     @ApiModelProperty(notes = "所属活动相册")
 	private String galleryUuid;
-    
 }

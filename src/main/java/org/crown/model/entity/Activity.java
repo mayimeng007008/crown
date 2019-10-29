@@ -42,9 +42,24 @@ public class Activity extends Convert {
      */
     private String theme;
     /**
+     * 活动主题
+     */
+    @TableField(value="watermark_img")
+    private String watermarkImg;
+    /**
      * 副主题
      */
     private String subtopic;
+    
+    /**
+     * 照片数量
+     */
+    @TableField(exist = false )
+    private Integer count;
+    /**
+     * 相册状态：可见/隐藏
+     */
+    private Integer status=1;
     /**
      	* 活动地址
      */
